@@ -1,9 +1,11 @@
 package com.example.customview_prec
 
+import android.animation.ValueAnimator
 import android.os.Bundle
-import android.util.Log
+import android.os.Handler
+import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
-import com.example.customview_prec.modelclass.ModelClass
+import kotlinx.android.synthetic.main.activity_second.*
 import org.imaginativeworld.whynotimagecarousel.ImageCarousel
 import org.imaginativeworld.whynotimagecarousel.model.CarouselItem
 
@@ -15,8 +17,47 @@ class SecondActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_second)
 
-
         imageSlider();
+        setAnimation();
+
+    }
+
+    private fun setAnimation() {
+
+        var runnable : Runnable
+        val delay = 3000 //Delay for 15 seconds.  One second = 1000 milliseconds.
+
+        val handler = Handler()
+        handler.postDelayed(object : Runnable {
+            override fun run() {
+
+                val anim = ValueAnimator.ofFloat(1f, 1.5f)
+                anim.duration = 1500
+                anim.addUpdateListener { animation ->
+                    imageView.scaleX = animation.animatedValue as Float
+                    imageView.scaleY = animation.animatedValue as Float
+                }
+                anim.repeatCount = 1
+                anim.repeatMode = ValueAnimator.REVERSE
+                anim.start()
+                handler.postDelayed(this, delay.toLong())
+            }
+        }, delay.toLong())
+
+
+
+
+            val anim = ValueAnimator.ofFloat(1f, 1.5f)
+            anim.duration = 1500
+            anim.addUpdateListener { animation ->
+                imageView.scaleX = animation.animatedValue as Float
+                imageView.scaleY = animation.animatedValue as Float
+            }
+            anim.repeatCount = 1
+            anim.repeatMode = ValueAnimator.REVERSE
+            anim.start()
+
+
 
     }
 
@@ -62,7 +103,6 @@ class SecondActivity : AppCompatActivity() {
         )
 
         carousel.setData(list)
-
 
     }
 

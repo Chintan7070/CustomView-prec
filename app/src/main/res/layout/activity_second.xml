@@ -24,5 +24,14 @@
         app:showCaption="true"
         app:showIndicator="true" />
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_marginTop="@dimen/_100sdp"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="@dimen/_100sdp"
+        android:src="@drawable/round_bg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/carousel" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
